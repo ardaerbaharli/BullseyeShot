@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Main;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
@@ -29,8 +30,18 @@ public class Config : MonoBehaviour
         set => PlayerPrefs.SetString("ActiveLanguage", value);
     }
 
+
+
+    public static string TargetActiveSpriteName = "target-outlined";
+    public static string TargetDeactiveSpriteName = "target";
+
+
     public static void LoadLocale(string languageIdentifier)
     {
-       LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales.First(x=>x.Identifier.Code == languageIdentifier);
+        LocalizationSettings.SelectedLocale =
+            LocalizationSettings.AvailableLocales.Locales.First(x => x.Identifier.Code == languageIdentifier);
     }
+
+    public static int MaxBullets = 10;
+    public static int MaxLives = 3;
 }

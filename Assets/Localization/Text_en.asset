@@ -34,5 +34,9 @@ MonoBehaviour:
     m_Localized: Background
     m_Metadata:
       m_Items: []
+  - m_Id: 295456314744832
+    m_Localized: Thank you for your feedback
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
