@@ -24,6 +24,7 @@ namespace Game
             pauseResumeToggle.valueChanged += OnPauseResumeChanged;
             playerController.OnLostLife += OnLostLife;
             playerController.OnShot += OnShot;
+            playerController.OnReloaded += OnReloaded;
             GameController.Instance.OnGameOver += OnGameOver;
         }
 
@@ -50,24 +51,25 @@ namespace Game
             pauseResumeToggle.valueChanged -= OnPauseResumeChanged;
             playerController.OnLostLife -= OnLostLife;
             playerController.OnShot -= OnShot;
+            playerController.OnReloaded -= OnReloaded;
             GameController.Instance.OnGameOver -= OnGameOver;
         }
 
 
         private void OnPauseResumeChanged(bool value)
         {
-            Time.timeScale = value ? 0 : 1;
+            Time.timeScale = value ? 1 : 0;
         }
 
         private void OnVolumeChanged(bool value)
         {
             Config.IsVolumeOn = value;
+            SoundManager.instance.SetSound(value);
         }
 
         public void Reload()
         {
             playerController.Reload();
-            UpdateBulletText(Config.MaxBullets);
         }
 
         public void Shoot()
@@ -78,6 +80,11 @@ namespace Game
         private void OnShot(int remainingBullets)
         {
             UpdateBulletText(remainingBullets);
+        }
+
+        private void OnReloaded()
+        {
+            UpdateBulletText(Config.MaxBullets);
         }
 
         private void OnLostLife(int remainingLives, LoseLifeReason r)

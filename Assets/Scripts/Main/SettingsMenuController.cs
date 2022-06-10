@@ -41,6 +41,7 @@ namespace Main
         private void OnVolumeChanged(bool value)
         {
             Config.IsVolumeOn = value;
+            SoundManager.instance.SetSound(value);
         }
 
         public void GoBack()

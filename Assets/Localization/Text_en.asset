@@ -38,5 +38,13 @@ MonoBehaviour:
     m_Localized: Thank you for your feedback
     m_Metadata:
       m_Items: []
+  - m_Id: 723145492258816
+    m_Localized: Score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 723539668754432
+    m_Localized: Back to menu
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

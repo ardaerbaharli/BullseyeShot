@@ -6,16 +6,16 @@ namespace Game
 {
     public class GameController : MonoBehaviour
     {
+        public delegate void GameOver();
+
+        public static GameController Instance;
         [SerializeField] private PlayerController playerController;
 
         [Tooltip("Must be even")] [SerializeField]
         private int numberOfTargetsOnStart;
 
-        public static GameController Instance;
-
-        public delegate void GameOver();
-
-        public event GameOver OnGameOver;
+        public int score;
+        private Track lastSpawnedTrack;
 
         private void Awake()
         {
@@ -23,10 +23,16 @@ namespace Game
                 Instance = this;
             else
                 Destroy(gameObject);
+            
+            // Fix fps
+            Application.targetFrameRate = 30;
         }
 
         private IEnumerator Start()
         {
+            lastSpawnedTrack = Track.Bottom;
+            score = 0;
+
             yield return new WaitUntil(() => ObjectPool.instance.isSet);
             SpawnTargets(numberOfTargetsOnStart);
         }
@@ -43,16 +49,16 @@ namespace Game
             playerController.OnLostLife -= OnLostLife;
         }
 
+        public event GameOver OnGameOver;
+
         private void OnLostLife(int remaininglives, LoseLifeReason reason)
         {
-            if (remaininglives <= 0)
-            {
-                StartCoroutine(FinishGame());
-            }
+            if (remaininglives <= 0) StartCoroutine(FinishGame());
         }
 
         private IEnumerator FinishGame()
         {
+            Vibration.Vibrate(3);
             yield return new WaitForSeconds(0.5f);
             OnGameOver?.Invoke();
         }
@@ -60,10 +66,10 @@ namespace Game
 
         public void SpawnTargets(int n = 1)
         {
-            var track = Track.Bottom;
             for (var i = 0; i < n; i++)
             {
-                track = track == Track.Bottom ? Track.Top : Track.Bottom;
+                var track = lastSpawnedTrack == Track.Bottom ? Track.Top : Track.Bottom;
+                lastSpawnedTrack = track;
                 var pObject = ObjectPool.instance.GetPooledObject("Target");
                 var target = pObject.target;
                 var isActiveDetermine = Range(0, 2) == 0;
@@ -76,7 +82,7 @@ namespace Game
 
         private void OnScored()
         {
-            
+            score++;
         }
     }
 }

@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topTrackPosition: {x: 1100, y: 104, z: 0}
   bottomTrackPosition: {x: -1066, y: -197, z: 0}
-  speed: 150
+  speed: 200
   isOutlined: 0
 --- !u!50 &9008437210524155137
 Rigidbody2D:

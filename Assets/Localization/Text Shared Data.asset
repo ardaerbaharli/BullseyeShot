@@ -35,6 +35,14 @@ MonoBehaviour:
     m_Key: ThankFeedback
     m_Metadata:
       m_Items: []
+  - m_Id: 723145492258816
+    m_Key: Score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 723539668754432
+    m_Key: BackToMenu
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

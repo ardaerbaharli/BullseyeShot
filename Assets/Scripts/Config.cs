@@ -44,4 +44,5 @@ public class Config : MonoBehaviour
 
     public static int MaxBullets = 10;
     public static int MaxLives = 3;
+    public static float MaxSoundVolume = -10f;
 }

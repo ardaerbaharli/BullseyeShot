@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
@@ -12,7 +13,13 @@ namespace Main
         [SerializeField] private GameObject yourFeedbackMenu;
         [SerializeField] private GameObject settingsMenu;
         [SerializeField] private Image background;
-        
+
+
+        private void Awake()
+        {
+            // Fix fps
+            Application.targetFrameRate = 30;
+        }
 
         private IEnumerator Start()
         {
