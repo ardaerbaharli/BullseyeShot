@@ -14,6 +14,7 @@ namespace Game
         [Tooltip("Must be even")] [SerializeField]
         private int numberOfTargetsOnStart;
 
+        public bool isPaused;
         public int score;
         private Track lastSpawnedTrack;
 

@@ -59,6 +59,8 @@ namespace Game
         private void OnPauseResumeChanged(bool value)
         {
             Time.timeScale = value ? 1 : 0;
+            GameController.Instance.isPaused = !value;
+            SoundManager.instance.PauseResume(value);
         }
 
         private void OnVolumeChanged(bool value)
@@ -69,11 +71,13 @@ namespace Game
 
         public void Reload()
         {
+            if (GameController.Instance.isPaused) return;
             playerController.Reload();
         }
 
         public void Shoot()
         {
+            if (GameController.Instance.isPaused) return;
             playerController.Shoot();
         }
 

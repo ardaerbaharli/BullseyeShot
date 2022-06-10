@@ -48,4 +48,13 @@ public class SoundManager : MonoBehaviour
     {
         reload.Play();
     }
+
+
+    public void PauseResume(bool value)
+    {
+        if (value)
+            gameBackgroundSound.UnPause();
+        else
+            gameBackgroundSound.Pause();
+    }
 }

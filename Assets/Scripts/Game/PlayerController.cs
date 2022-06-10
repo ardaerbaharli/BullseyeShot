@@ -25,6 +25,7 @@ namespace Game
         [SerializeField] private float xBound, yBound;
 
         private RectTransform aimRect;
+
         private void Awake()
         {
             remainingBullets = Config.MaxBullets;
@@ -55,7 +56,7 @@ namespace Game
             var newX = Mathf.Clamp(aimPos.x + deltaX, -xBound, xBound);
             var newY = Mathf.Clamp(aimPos.y + deltaY, -yBound, yBound);
             var newPos = new Vector3(newX, newY, 0);
-            aimRect.anchoredPosition= newPos;
+            aimRect.anchoredPosition = newPos;
         }
 
         public event LostLife OnLostLife;
@@ -95,11 +96,6 @@ namespace Game
                     remainingLives--;
                     OnLostLife?.Invoke(remainingLives, LoseLifeReason.WrongTarget);
                 }
-            }
-            else
-            {
-                remainingLives--;
-                OnLostLife?.Invoke(remainingLives, LoseLifeReason.Missed);
             }
         }
 
