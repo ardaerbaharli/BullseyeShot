@@ -18,11 +18,17 @@ public class Vibration
 
     private static void VibrateAnd(int level)
     {
+#if UNITY_ANDROID
+
         Native.Vibrate(level);
+#endif
+
     }
 
     private static void VibrateIos(int level)
     {
+#if UNITY_IOS
+
         if (iOSHapticFeedback.Instance.IsSupported())
         {
             iOSHapticFeedback.Instance.Trigger((iOSHapticFeedback.iOSFeedbackType) level);
@@ -31,6 +37,8 @@ public class Vibration
         {
             Handheld.Vibrate();
         }
+#endif
+
     }
 
     public static bool IsHapticSupported()
